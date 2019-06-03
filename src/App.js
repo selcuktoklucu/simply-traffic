@@ -8,8 +8,9 @@ import SignUp from './auth/components/SignUp'
 import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
-
 import Alert from 'react-bootstrap/Alert'
+import NewTrafficPoints from './components/routes/new-traffic-points'
+import Traffic from './components/routes/traffic'
 
 class App extends Component {
   constructor () {
@@ -43,6 +44,9 @@ class App extends Component {
           </Alert>
         ))}
         <main className="container">
+          <Route exact path='/' render={() => (
+            <Traffic alert={this.alert} user={user} />
+          )} />
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
           )} />
@@ -54,6 +58,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/new-traffic-points' render={() => (
+            <NewTrafficPoints alert={this.alert} user={user} />
           )} />
         </main>
       </React.Fragment>
