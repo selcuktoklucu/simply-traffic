@@ -11,10 +11,11 @@ import ChangePassword from './auth/components/ChangePassword'
 import Alert from 'react-bootstrap/Alert'
 import NewTrafficPoints from './components/routes/new-traffic-points'
 import Traffic from './components/routes/traffic'
+import Address from './components/routes/Address'
 
 class App extends Component {
-  constructor () {
-    super()
+  constructor (params) {
+    super(params)
 
     this.state = {
       user: null,
@@ -44,7 +45,10 @@ class App extends Component {
           </Alert>
         ))}
         <main className="container">
-          <Route exact path='/' render={() => (
+          <AuthenticatedRoute user={user} exact path='/home/:id' render={(match) => (
+            <Address alert={this.alert} user={user} match={match} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/home' render={() => (
             <Traffic alert={this.alert} user={user} />
           )} />
           <Route path='/sign-up' render={() => (

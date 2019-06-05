@@ -10,7 +10,7 @@ class SignOut extends Component {
 
     signOut(user)
       .finally(() => alert(messages.signOutSuccess, 'success'))
-      .finally(() => history.push('/'))
+      .finally(() => history.push('/sign-in'))
       .finally(() => clearUser())
   }
 

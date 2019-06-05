@@ -42,19 +42,21 @@ class NewTrafficPoints extends Component {
       <form className='addresses-form' onSubmit={this.onNewAddresses}>
         <h3>Add two new addresses</h3>
 
-        <label htmlFor="email">First Address</label>
+        <label htmlFor="text">First Address</label>
         <input
           required
           name="firstAddress"
+          pattern="[a-zA-Z0-9!@#$%^*_, |]{6,25}"
           value={firstAddress}
           type="text"
           placeholder="Boston City Hall"
           onChange={this.handleChange}
         />
-        <label htmlFor="password">Second Address</label>
+        <label htmlFor="text">Second Address</label>
         <input
           required
           name="secondAddress"
+          pattern="[a-zA-Z0-9!@#$%^*_, |]{6,25}"
           value={secondAddress}
           type="text"
           placeholder="125 Summer St."

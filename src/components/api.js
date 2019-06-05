@@ -27,12 +27,12 @@ export const indexAllAddresses = token => {
   })
 }
 
-export const signOut = user => {
+export const deleteAddress = (id, token) => {
   return axios({
-    url: apiUrl + '/sign-out',
+    url: apiUrl + `/addresses/${id}`,
     method: 'DELETE',
     headers: {
-      'Authorization': `Token token=${user.token}`
+      'Authorization': `Token token=${token}`
     }
   })
 }
