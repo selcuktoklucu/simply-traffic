@@ -59,7 +59,9 @@ class Traffic extends Component {
     deleteAddress(id, this.props.user.token)
       .finally(() => alert('Delete Address Successful', 'success'))
   }
+  // <h3 className="m-0">See traffic situation in your Area</h3>
 
+  // { user && <Button variant="success" href="#/new-traffic-points">Add A Book</Button>}
   render () {
     console.log(this.state)
     const { user } = this.props
@@ -68,11 +70,11 @@ class Traffic extends Component {
     return (
       <Fragment >
         <div className="d-flex justify-content-between align-items-center py-3">
-          <h3 className="m-0">See traffic situation in your Area</h3>
           {!user && <p className="m-0">Sign In to Observe Traffic</p>}
-          { user && <Button variant="success" href="#/new-traffic-points">Add A Book</Button>}
         </div>
-        {loading ? <LoadingSpinner /> : null }
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          {loading ? <LoadingSpinner /> : null }
+        </div>
         <ListGroup style={{ display: 'flex', flexDirection: 'row' }}>
           { user && addresses.map(address => (
             <Card style={{ width: '30rem', margin: '10px' }} key={addresses.id}>
