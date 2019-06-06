@@ -6,6 +6,7 @@ import apiUrl from '../../apiConfig'
 import Button from 'react-bootstrap/Button'
 import { deleteAddress } from '../api'
 import LoadingSpinner from './loadingSpinner'
+import Card from 'react-bootstrap/Card'
 // import Spinner from 'react-bootstrap/Spinner'
 
 class Traffic extends Component {
@@ -62,45 +63,59 @@ class Traffic extends Component {
   render () {
     console.log(this.state)
     const { user } = this.props
-    const { tasks, addresses, loading } = this.state
+    const { addresses, loading } = this.state
     console.log('addresses are ', addresses)
     return (
-      <Fragment>
+      <Fragment >
         <div className="d-flex justify-content-between align-items-center py-3">
           <h3 className="m-0">See traffic situation in your Area</h3>
           {!user && <p className="m-0">Sign In to Observe Traffic</p>}
           { user && <Button variant="success" href="#/new-traffic-points">Add A Book</Button>}
         </div>
         {loading ? <LoadingSpinner /> : null }
-        <ListGroup>
-          { user && tasks.map(task => (
-            <ListGroup.Item key={task.id}>
-              <span className="h5 d-block">{task.title}</span>
-              <span className="d-block">{task.description}</span>
-              <Button variant="Primary" onClick={() => this.handleDetatils(task.id)}>Show Steps</Button>
-              <Button variant="danger" onClick={() => this.handleDelete(task.id)}>Delete the Task!</Button>
-            </ListGroup.Item>
-          )) }
+        <ListGroup style={{ display: 'flex', flexDirection: 'row' }}>
           { user && addresses.map(address => (
-            <ListGroup.Item key={address.id}>
-              <span className="h5 d-block">From: {address.firstAddress}</span>
-              <span>To: {address.secondAddress}</span>
-              <p>Total Traffic: {address.trafficTime}</p>
-              <p>Total Traffic: {address.firstAddressLat}</p>
-              <p>Total Traffic: {address.firstAddressLng}</p>
-              <img src={'https://maps.googleapis.com/maps/api/staticmap?center=Downtown+Crossing,Boston,MA&zoom=11&size=600x600&maptype=roadmap&markers=color:blue%7Clabel:S%7C' + address.firstAddressLat + ',' + address.firstAddressLng + '&markers=color:green%7Clabel:G%7C' + address.secondAddressLat + ',' + address.secondAddressLng + '&key=AIzaSyCZOKfp7vh0jn2g0VUk7Pk8OHNJDQgtsm8'} />
-              <p>Uber Estimated Price: {address.uberEstimatedPrice}</p>
-              <Button variant="danger" onClick={() => this.handleDelete(address.id)}>Delete the Address!</Button>
-              <Link to={'/home/' + address.id} >Click here to Change!</Link>
-              <Button variant="danger" href='#/home/'>Change the Address!</Button>
-              <p>This card created by using Google and Uber APIs </p>
-            </ListGroup.Item>
+            <Card style={{ width: '30rem', margin: '10px' }} key={addresses.id}>
+              <img src={'https://maps.googleapis.com/maps/api/staticmap?center=Downtown+Crossing,Boston,MA&zoom=11&size=350x350&maptype=roadmap&markers=color:blue%7Clabel:S%7C' + address.firstAddressLat + ',' + address.firstAddressLng + '&markers=color:green%7Clabel:F%7C' + address.secondAddressLat + ',' + address.secondAddressLng + '&key=AIzaSyCZOKfp7vh0jn2g0VUk7Pk8OHNJDQgtsm8'} />
+              <Card.Body>
+                <Card.Text>
+                  From: {address.firstAddress}
+                </Card.Text>
+                <Card.Text>
+                  To: {address.secondAddress}
+                </Card.Text>
+              </Card.Body>
+              <ListGroup className="list-group-flush">
+                <ListGroup.Item>Total Traffic: {address.trafficTime}</ListGroup.Item>
+                <ListGroup.Item>Uber Estimated Price: {address.uberEstimatedPrice}</ListGroup.Item>
+              </ListGroup>
+              <Card.Body>
+                <Link to={'/home/' + address.id} >Click here to Change!</Link>
+                <Button variant="danger" onClick={() => this.handleDelete(address.id)}>Delete the Address!</Button>
+              </Card.Body>
+            </Card>
           ))}
         </ListGroup>
       </Fragment>
     )
   } // ENDS render
 } // ENDS class
+
+// { user && addresses.map(address => (
+//   <ListGroup.Item key={address.id}>
+//   <span className="h5 d-block">From: {address.firstAddress}</span>
+//   <span>To: {address.secondAddress}</span>
+//   <p>Total Traffic: {address.trafficTime}</p>
+//   <p>Total Traffic: {address.firstAddressLat}</p>
+//   <p>Total Traffic: {address.firstAddressLng}</p>
+//   <img src={'https://maps.googleapis.com/maps/api/staticmap?center=Downtown+Crossing,Boston,MA&zoom=11&size=600x600&maptype=roadmap&markers=color:blue%7Clabel:S%7C' + address.firstAddressLat + ',' + address.firstAddressLng + '&markers=color:green%7Clabel:G%7C' + address.secondAddressLat + ',' + address.secondAddressLng + '&key=AIzaSyCZOKfp7vh0jn2g0VUk7Pk8OHNJDQgtsm8'} />
+//   <p>Uber Estimated Price: {address.uberEstimatedPrice}</p>
+//   <Button variant="danger" onClick={() => this.handleDelete(address.id)}>Delete the Address!</Button>
+//   <Link to={'/home/' + address.id} >Click here to Change!</Link>
+//   <Button variant="danger" href='#/home/'>Change the Address!</Button>
+//   <p>This card created by using Google and Uber APIs </p>
+//   </ListGroup.Item>
+// ))}
 
 // <ListGroup>
 // { user && steps.map(step => (
