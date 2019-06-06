@@ -20,14 +20,10 @@ class NewTrafficPoints extends Component {
 
   onNewAddresses = event => {
     event.preventDefault()
-
+    // console.log(this.props.user.token)
     const { alert } = this.props
-    console.log(this.props.user.token)
     newAddress(this.state, this.props.user.token)
-      // .then(() => signIn(this.state))
-      // .then(res => setUser(res.data.user))
       .then(() => alert(messages.signUpSuccess, 'success'))
-      // .then(() => history.push('/'))
       .catch(error => {
         console.error(error)
         this.setState({ firstAddress: '', secondAddress: '' })
@@ -46,7 +42,8 @@ class NewTrafficPoints extends Component {
         <input
           required
           name="firstAddress"
-          pattern="[a-zA-Z0-9!@#$%^*_, |]{6,25}"
+          pattern="[a-zA-Z0-9!@#$%^*_, |]{6,45}"
+          title="Please Enter a Valid Address, 6 to 45 character"
           value={firstAddress}
           type="text"
           placeholder="Boston City Hall"
@@ -56,7 +53,8 @@ class NewTrafficPoints extends Component {
         <input
           required
           name="secondAddress"
-          pattern="[a-zA-Z0-9!@#$%^*_, |]{6,25}"
+          pattern="[a-zA-Z0-9!@#$%^*_, |]{6,45}"
+          title="Please Enter a Valid Address, 6 to 45 character"
           value={secondAddress}
           type="text"
           placeholder="125 Summer St."

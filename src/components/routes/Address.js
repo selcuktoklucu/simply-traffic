@@ -20,9 +20,6 @@ class Address extends Component {
     }
   }
   componentDidMount () {
-    console.log('This props', this.props)
-    console.log('This props user', this.props.user)
-    console.log('New componentDidMount')
     axios({
       method: 'GET',
       url: `${apiUrl}/addresses/${this.props.match.match.params.id}`,
@@ -31,15 +28,9 @@ class Address extends Component {
       }
     })
       .then(response => {
-        console.log('New response', response)
         this.setState({ address: response.data.address })
-        console.log('Addressjs response retrieved and setted in state,', this.state)
       })
       .catch(() => console.log('ERROR'))
-    // .then(res => {
-    //   this.setState({ movie: res.data.movie })
-    // })
-    // .catch(console.log)
   }
 
   handleDelete = (id) => {
@@ -49,7 +40,7 @@ class Address extends Component {
 
   handleChange = (event) => {
     // Update state
-    console.log('Changing', event)
+    // console.log('Changing', event)
     const updatedField = {
       [event.target.name]: event.target.value
     }
@@ -71,15 +62,11 @@ class Address extends Component {
       }
     })
     this.setState({ edit: true })
-  // .then(res => {
-  //   this.setState({ updated: true })
-  // })
-  // .catch(console.error)
   }
   render () {
-    console.log('props are ', this.props)
+    // console.log('props are ', this.props)
+    // console.log('addresses are ', address)
     const { address, edit } = this.state
-    console.log('addresses are ', address)
     if (edit) {
       return <Redirect to={'/home/'} />
     }
