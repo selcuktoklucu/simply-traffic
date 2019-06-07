@@ -20,8 +20,6 @@ class Traffic extends Component {
       loading: false
     }
   }
-  // https://maps.googleapis.com/maps/api/directions/json?origin=195SydnedStBoston,MA&destination=Concord,MA&
-  // departure_time=now&key=AIzaSyCZOKfp7vh0jn2g0VUk7Pk8OHNJDQgtsm8
   componentDidMount () {
     if (this.props.user) {
       this.setState({ loading: true })
@@ -50,6 +48,7 @@ class Traffic extends Component {
   render () {
     const { user } = this.props
     const { addresses, loading } = this.state
+    console.log(addresses)
     return (
       <Fragment >
         <div className="d-flex justify-content-between align-items-center py-3">
@@ -61,7 +60,7 @@ class Traffic extends Component {
         <ListGroup style={{ display: 'flex', flexDirection: 'row' }}>
           { user && addresses.map(address => (
             <Card key={address.id} style={{ width: '30rem', margin: '10px' }}>
-              <img src={'https://maps.googleapis.com/maps/api/staticmap?center=Downtown+Crossing,Boston,MA&zoom=11&size=350x350&maptype=roadmap&markers=color:blue%7Clabel:S%7C' + address.firstAddressLat + ',' + address.firstAddressLng + '&markers=color:green%7Clabel:F%7C' + address.secondAddressLat + ',' + address.secondAddressLng + '&key=AIzaSyCZOKfp7vh0jn2g0VUk7Pk8OHNJDQgtsm8'} />
+              <img src={address.picUrl} />
               <Card.Body>
                 <Card.Text>
                   From: {address.firstAddress}
