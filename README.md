@@ -3,7 +3,7 @@ Simply traffic, traffic data app based on React.Js
 By Selcuk Toklucu
 
 # Front End
-  Live Site: https://github.com/selcuktoklucu/simply-traffic
+  Live Site: https://selcuktoklucu.github.io/simply-traffic
   Github: https://github.com/selcuktoklucu/simply-traffic
 
 
@@ -16,18 +16,18 @@ Client is able to add some significant addresses to their building and show how 
 As well as price estimation from Uber.
 
 # List of Technologies:
-ReactJS.
-Ruby on Rails
-RestFul API Services
-Third-Party API (Google Maps and UBER)
-AWS S3 Bucket
-Javascript
-Cascading Style Sheets(CSS)
-SaSS (SCSS)
-Axios
-Bootstrap
-OpenURL
-Git
+- ReactJS.
+- Ruby on Rails
+- RestFul API Services
+- Third-Party API (Google Maps and UBER)
+- AWS S3 Bucket
+- Javascript
+- Cascading Style Sheets(CSS)
+- SaSS (SCSS)
+- Axios
+- Bootstrap
+- OpenURL
+- Git
 
 # Development process and strategy
 
@@ -47,14 +47,14 @@ Auto refreshing the live data in every couple minutes.gi
 
 # Wireframes and user stories
 ![alt text](https://sei-roberto.s3.amazonaws.com/a5ffeebbac561a88f435f273bb1a8d0e)
-As an unregistered user, I would like to sign up with email and password.
-As a registered user, I would like to sign in with email and password.
-As a signed in user, I would like to change password.
-As a signed in user, I would like to sign out.
-As a signed in user, I would to create traffic cards.
-As a signed in user, I would to edit my traffic cards.
-As a signed in user, I would to delete posts.
-As a user, I want to see locations of starting end ending point on the map as markers.
+- As an unregistered user, I would like to sign up with email and password.
+- As a registered user, I would like to sign in with email and password.
+- As a signed in user, I would like to change password.
+- As a signed in user, I would like to sign out.
+- As a signed in user, I would to create traffic cards.
+- As a signed in user, I would to edit my traffic cards.
+- As a signed in user, I would to delete posts.
+- As a user, I want to see locations of starting end ending point on the map as markers.
 
 ### Screenshot of the Application
 
