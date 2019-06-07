@@ -48,7 +48,6 @@ class Traffic extends Component {
   render () {
     const { user } = this.props
     const { addresses, loading } = this.state
-    console.log(addresses)
     return (
       <Fragment >
         <div className="d-flex justify-content-between align-items-center py-3">
