@@ -4,6 +4,7 @@ import './Header.scss'
 
 const authenticatedOptions = (
   <React.Fragment>
+    <Link to="/home">Home</Link>
     <Link to="/new-traffic-points">Add new Address</Link>
     <Link to="/change-password">Change Password</Link>
     <Link to="/sign-out">Sign Out</Link>
@@ -19,7 +20,7 @@ const unauthenticatedOptions = (
 
 const alwaysOptions = (
   <React.Fragment>
-    <Link to="/home">Home</Link>
+
   </React.Fragment>
 )
 
