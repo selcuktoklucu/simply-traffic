@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import ListGroup from 'react-bootstrap/ListGroup'
 import apiUrl from '../../apiConfig'
@@ -21,6 +21,7 @@ class Traffic extends Component {
     }
   }
   componentDidMount () {
+    const { alert } = this.props
     if (this.props.user) {
       this.setState({ loading: true })
     }
@@ -36,18 +37,29 @@ class Traffic extends Component {
           this.setState({ addresses: res.data.addresses })
           this.setState({ loading: false })
         })
-        .catch(() => console.log('Error in trafficJs'))
+        .catch(() => {
+          alert('Looks like there is no address', 'danger')
+          this.setState({ edit: true })
+        })
     }
   }
 
   handleDelete = (id) => {
+    const { alert } = this.props
+
     deleteAddress(id, this.props.user.token)
       .finally(() => alert('Delete Address Successful', 'success'))
+      .finally(() => { this.setState({ edit: true }) })
   }
 
   render () {
     const { user } = this.props
-    const { addresses, loading } = this.state
+    const { addresses, loading, edit } = this.state
+
+    if (edit) {
+      return <Redirect to={'/new-traffic-points/'} />
+    }
+
     return (
       <Fragment >
         <div className="d-flex justify-content-between align-items-center py-3">
