@@ -23,7 +23,7 @@ class NewTrafficPoints extends Component {
     // console.log(this.props.user.token)
     const { alert } = this.props
     newAddress(this.state, this.props.user.token)
-      .then(() => alert(messages.signUpSuccess, 'success'))
+      .then(() => alert('You Successfully Created An Adress Pair', 'success'))
       .catch(error => {
         console.error(error)
         this.setState({ firstAddress: '', secondAddress: '' })
