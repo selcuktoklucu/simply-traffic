@@ -1,12 +1,17 @@
 import React, { Component, Fragment } from 'react'
+// import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
-import ListGroup from 'react-bootstrap/ListGroup'
 import apiUrl from '../../apiConfig'
-import Button from 'react-bootstrap/Button'
 import { deleteAddress } from '../api'
 import LoadingSpinner from './loadingSpinner'
+import ListGroup from 'react-bootstrap/ListGroup'
+import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
+import DropdownButton from 'react-bootstrap/DropdownButton'
+import Dropdown from 'react-bootstrap/Dropdown'
+// import IntervalRenderer from 'react-interval-renderer'
+// import Interval from 'react-interval-rerender'
 // import Spinner from 'react-bootstrap/Spinner'
 
 class Traffic extends Component {
@@ -21,10 +26,18 @@ class Traffic extends Component {
     }
   }
   componentDidMount () {
-    const { alert } = this.props
+    // const { alert } = this.props
     if (this.props.user) {
       this.setState({ loading: true })
     }
+    this.getTrafficData()
+    this.interval = setInterval(() => this.setState({ time: Date.now() }), 60000)
+    this.interval = setInterval(() => this.getTrafficData(), 300000)
+  }
+  getTrafficData () {
+    console.log('filldata called')
+    this.forceUpdate()
+    const { alert } = this.props
     if (this.props.user) {
       axios({
         method: 'GET',
@@ -59,7 +72,7 @@ class Traffic extends Component {
     if (edit) {
       return <Redirect to={'/new-traffic-points/'} />
     }
-
+    console.log('state time', this.state.time)
     return (
       <Fragment >
         <div className="d-flex justify-content-between align-items-center py-3">
@@ -68,9 +81,9 @@ class Traffic extends Component {
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           {loading ? <LoadingSpinner /> : null }
         </div>
-        <ListGroup style={{ display: 'flex', flexDirection: 'row' }}>
+        <div className="row justify-content-center">
           { user && addresses.map(address => (
-            <Card key={address.id} style={{ width: '30rem', margin: '10px' }}>
+            <Card key={address.id} className="col-4">
               <img src={address.picUrl} />
               <Card.Body>
                 <Card.Text>
@@ -85,12 +98,14 @@ class Traffic extends Component {
                 <ListGroup.Item>Uber Estimated Price: {address.uberEstimatedPrice}</ListGroup.Item>
               </ListGroup>
               <Card.Body>
-                <Link to={'/home/' + address.id} >Click here to Change!</Link>
-                <Button variant="danger" onClick={() => this.handleDelete(address.id)}>Delete the Address!</Button>
+                <DropdownButton alignRight title="Options">
+                  <Dropdown.Item><Link to={'/home/' + address.id} className="btn btn-primary">Edit Adress</Link></Dropdown.Item>
+                  <Dropdown.Item><Button variant="danger" onClick={() => this.handleDelete(address.id)}>Delete the Address!</Button></Dropdown.Item>
+                </DropdownButton>
               </Card.Body>
             </Card>
           ))}
-        </ListGroup>
+        </div>
       </Fragment>
     )
   } // ENDS render

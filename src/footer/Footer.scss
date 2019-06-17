@@ -1,0 +1,17 @@
+$charcoal: #bbb;
+@font-face {
+  font-family: 'Gugi';
+  src: url('./Gugi-Regular.ttf') format('truetype');
+}
+
+.footer {
+   font-family: 'Gugi', cursive;
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #f8001690;
+   letter-spacing: 4px;
+   color: white;
+   text-align: center;
+}

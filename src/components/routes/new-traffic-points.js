@@ -35,7 +35,7 @@ class NewTrafficPoints extends Component {
     const { firstAddress, secondAddress } = this.state
 
     return (
-      <form className='addresses-form' onSubmit={this.onNewAddresses}>
+      <form className='addresses-form auth-form' onSubmit={this.onNewAddresses}>
         <h3>Add two new addresses</h3>
 
         <label htmlFor="text">First Address</label>

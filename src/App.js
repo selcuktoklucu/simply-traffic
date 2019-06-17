@@ -8,10 +8,15 @@ import SignUp from './auth/components/SignUp'
 import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
-import Alert from 'react-bootstrap/Alert'
+
+import Footer from './footer/Footer'
+import Traffic from './components/routes/Traffic'
 import NewTrafficPoints from './components/routes/new-traffic-points'
-import Traffic from './components/routes/traffic'
 import Address from './components/routes/Address'
+import Welcome from './components/routes/Welcome'
+
+import AutoDismissAlert from './components/autoDismissAlert.js'
+// import Alert from 'react-bootstrap/Alert'
 
 class App extends Component {
   constructor (params) {
@@ -38,11 +43,10 @@ class App extends Component {
       <React.Fragment>
         <Header user={user} />
         {alerts.map((alert, index) => (
-          <Alert key={index} dismissible variant={alert.type}>
-            <Alert.Heading>
-              {alert.message}
-            </Alert.Heading>
-          </Alert>
+          <AutoDismissAlert
+            key={index}
+            alert={alert}
+          />
         ))}
         <main className="container">
           <AuthenticatedRoute user={user} exact path='/home/:id' render={(match) => (
@@ -57,6 +61,9 @@ class App extends Component {
           <Route path='/sign-in' render={() => (
             <SignIn alert={this.alert} setUser={this.setUser} />
           )} />
+          <Route exact path='/' render={() => (
+            <Welcome />
+          )} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
           )} />
@@ -67,6 +74,7 @@ class App extends Component {
             <NewTrafficPoints alert={this.alert} user={user} />
           )} />
         </main>
+        <Footer />
       </React.Fragment>
     )
   }
