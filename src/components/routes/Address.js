@@ -1,12 +1,15 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import axios from 'axios'
 import { Link, Redirect } from 'react-router-dom'
 // import ListGroup from 'react-bootstrap/ListGroup'
 import apiUrl from '../../apiConfig'
 // import Button from 'react-bootstrap/Button'
 import { deleteAddress } from '../api'
-// import LoadingSpinner from './loadingSpinner'
+// import LoadingSpinner from './LoadingSpinner'
 // import Spinner from 'react-bootstrap/Spinner'
+
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
 class Address extends Component {
   constructor () {
@@ -74,29 +77,32 @@ class Address extends Component {
       return <p>Loading...</p>
     }
     return (
-      <Fragment>
+      <div className="col-md-6 m-auto py-3">
         <div className="d-flex justify-content-between align-items-center py-3">
-          <h3 className="m-0">See traffic situation in your Area</h3>
-          <form onSubmit={this.handleSubmit}>
-            <label>1st Address</label>
-            <input
-              name='firstAddress'
-              placeholder='125 Summer St Boston, MA'
-              value={address.firstAddress}
-              onChange={this.handleChange}
-            />
-            <label>2nd Address</label>
-            <input
-              name='secondAddress'
-              placeholder='Quincy City Hall, MA'
-              value={address.secondAddress}
-              onChange={this.handleChange}
-            />
-            <button type='submit'>Submit</button>
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>example@example.com</Form.Label>
+              <Form.Control
+                name='firstAddress'
+                placeholder='125 Summer St Boston, MA'
+                value={address.firstAddress}
+                onChange={this.handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Destination</Form.Label>
+              <Form.Control
+                name='secondAddress'
+                placeholder='Quincy City Hall, MA'
+                value={address.secondAddress}
+                onChange={this.handleChange}
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit">Submit</Button>
             <Link to={'/home/'}><button>Cancel</button></Link>
-          </form>
+          </Form>
         </div>
-      </Fragment>
+      </div>
     )
   } // ENDS render
 } // ENDS class

@@ -11,7 +11,7 @@ import ChangePassword from './auth/components/ChangePassword'
 
 import Footer from './footer/Footer'
 import Traffic from './components/routes/Traffic'
-import NewTrafficPoints from './components/routes/new-traffic-points'
+import NewTrafficPoints from './components/routes/New-traffic-points'
 import Address from './components/routes/Address'
 import Welcome from './components/routes/Welcome'
 

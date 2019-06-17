@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import { deleteAddress } from '../api'
-import LoadingSpinner from './loadingSpinner'
+import LoadingSpinner from './LoadingSpinner'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
@@ -83,27 +83,29 @@ class Traffic extends Component {
         </div>
         <div className="row justify-content-center">
           { user && addresses.map(address => (
-            <Card key={address.id} className="col-4">
-              <img src={address.picUrl} />
-              <Card.Body>
-                <Card.Text>
-                  From: {address.firstAddress}
-                </Card.Text>
-                <Card.Text>
-                  To: {address.secondAddress}
-                </Card.Text>
-              </Card.Body>
-              <ListGroup className="list-group-flush">
-                <ListGroup.Item>Total Traffic: {address.trafficTime}</ListGroup.Item>
-                <ListGroup.Item>Uber Estimated Price: {address.uberEstimatedPrice}</ListGroup.Item>
-              </ListGroup>
-              <Card.Body>
-                <DropdownButton alignRight title="Options">
-                  <Dropdown.Item><Link to={'/home/' + address.id} className="btn btn-primary">Edit Adress</Link></Dropdown.Item>
-                  <Dropdown.Item><Button variant="danger" onClick={() => this.handleDelete(address.id)}>Delete the Address!</Button></Dropdown.Item>
-                </DropdownButton>
-              </Card.Body>
-            </Card>
+            <div className="col-md-4 col-sm-6" key={address.id} >
+              <Card >
+                <img className='card-img-top' src={address.picUrl} />
+                <Card.Body>
+                  <Card.Text>
+                    From: <strong>{address.firstAddress}</strong>
+                  </Card.Text>
+                  <Card.Text>
+                    To: <strong>{address.secondAddress}</strong>
+                  </Card.Text>
+                </Card.Body>
+                <ListGroup className="list-group-flush">
+                  <ListGroup.Item>Total Traffic: <strong>{address.trafficTime}</strong></ListGroup.Item>
+                  <ListGroup.Item>Uber Estimated Price: <strong>{address.uberEstimatedPrice}</strong></ListGroup.Item>
+                </ListGroup>
+                <Card.Body>
+                  <DropdownButton alignRight title="Options">
+                    <Dropdown.Item><Link to={'/home/' + address.id} className="btn btn-primary">Edit Adress</Link></Dropdown.Item>
+                    <Dropdown.Item><Button variant="danger" onClick={() => this.handleDelete(address.id)}>Delete the Address!</Button></Dropdown.Item>
+                  </DropdownButton>
+                </Card.Body>
+              </Card>
+            </div>
           ))}
         </div>
       </Fragment>
